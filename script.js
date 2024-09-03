@@ -1,15 +1,5 @@
 let names = [
-    "DAGOTHWAVE.opus",
-    "Employee of The Month.opus",
-    "lofimix.opus",
-    "synthwave-mix-1.opus",
-    "synthwave-mix-2.opus",
-    "synthwave-mix-3.opus",
-    "synthwave-mix-4.opus",
-    "synthwave-mix-5.opus",
-    "synthwave-mix-6.opus",
-    "synthwave-mix-7.opus",
-    "synthwave-mix-8.opus",
+    "music.opus",
 ]
 
 let audio = new Audio("music/DAGOTHWAVE.opus")
