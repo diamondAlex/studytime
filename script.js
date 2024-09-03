@@ -1,5 +1,5 @@
 let names = [
-    "music.opus",
+    "music.opus"
 ]
 
 let audio = new Audio("music/DAGOTHWAVE.opus")
@@ -11,6 +11,7 @@ video.classList.add("video")
 //video.controls=true
 video.muted=true
 video.autoplay=true
+video.loop=true
 let source = document.createElement("source")
 video.appendChild(source)
 source.src = "vid.mp4"
