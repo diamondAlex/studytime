@@ -2,9 +2,21 @@ let names = [
     "music.opus"
 ]
 
-let audio = new Audio("music/DAGOTHWAVE.opus")
+
+let audio = new Audio("")
+audio.loop = true
 let root = document.getElementById("root")
 root.classList.add("root")
+
+let canvas = document.createElement("canvas")
+canvas.classList.add("canva")
+
+root.appendChild(canvas)
+let ctx = canvas.getContext("2d");
+let w = canvas.parentElement.clientWidth
+let h = canvas.parentElement.clientHeight
+canvas.height = h
+canvas.width = w
 
 let video = document.createElement("video")
 video.classList.add("video")
@@ -92,3 +104,50 @@ audio.addEventListener("canplaythrough", (event) => {
   /* the audio is now playable; play it if permissions allow */
   audio.play();
 });
+
+let bx_r = 534/1364
+let by_r =296/658
+
+let drawn = 0
+
+let img = new Image();
+img.src = "columbo.png";
+
+let columbos_x = 10
+let columbos_y = 10
+let d_x = 10
+let d_y = 10
+function spawn_thing(){
+    ctx.clearRect(columbos_x, columbos_y, 100, 100);
+    ctx.drawImage(img, columbos_x+=d_x, columbos_y+=d_y);
+    if(columbos_x >= w)
+        d_x *= -1
+    if(columbos_y >= h)
+        d_y *= -1
+    if(columbos_x <= 0)
+        d_x *= -1
+    if(columbos_y <= 0)
+        d_y *= -1
+}
+
+setInterval(() =>{
+    spawn_thing()
+},50)
+
+//for later
+window.addEventListener('mousemove', (e)=>{
+    x = e.clientX
+    y = e.clientY
+    bx = bx_r * w
+    by = by_r * h
+    if(bx - 10 < x && x < bx+10 && by -10 < y && y < by+10){
+        ctx.beginPath();
+        ctx.strokeStyle = "white"
+        ctx.arc(bx, by, 10, 0, 2 * Math.PI);
+        ctx.stroke();
+        drawn = 1
+    }else if(drawn == 1){
+        ctx.clearRect(bx-15, by-15, 30, 30);
+        drawn = 0
+    }
+})
